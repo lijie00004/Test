@@ -1,4 +1,4 @@
-print("============= JSONEncode 1")
+print("============= JSONEncode 3")
 local HttpService = game:GetService("HttpService")
 for _, chi in ipairs(game:GetDescendants()) do
 	local success, m = pcall(function()
@@ -744,7 +744,7 @@ local function saveVal(val, data, key)
 				keyVal = keyVal:ToHex()
 			end)
 			if not success then
-				print("ColorSequence ToHex", keyVal)
+				print("2 ColorSequence ToHex", keyVal)
 				keyVal = Color3.new(math.clamp(keyVal.R, 0, 1), math.clamp(keyVal.G, 0, 1), math.clamp(keyVal.B, 0, 1)):ToHex()
 			end
 			val[#val+1] = {Time = keypoint.Time, Color = keyVal}
@@ -756,6 +756,7 @@ local function saveVal(val, data, key)
 			val = val:ToHex()
 		end)
 		if not success then
+			print("2 Color3 ToHex", val)
 			val = Color3.new(math.clamp(val.R, 0, 1), math.clamp(val.G, 0, 1), math.clamp(val.B, 0, 1)):ToHex()
 		end
 	elseif typeStr == "BrickColor" then
