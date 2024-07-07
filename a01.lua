@@ -428,6 +428,10 @@ local InstData = {
 	Actor = {Inherited = {"Model"}},
 	-- 网格
 	BlockMesh = {Inherited = {"DataModelMesh"}},
+	FileMesh = {
+		Properties = {"MeshId", "TextureId"},
+		Inherited = {"DataModelMesh"}
+	},
 	CylinderMesh = {
 		Inherited = {"DataModelMesh"}
 	},
