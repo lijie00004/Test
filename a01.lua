@@ -739,7 +739,14 @@ local function saveVal(val, data, key)
 		local keypoints = val.Keypoints
 		val = {}
 		for _, keypoint in ipairs(keypoints) do
-			val[#val+1] = {Time = keypoint.Time, Color = keypoint.Value:ToHex()}
+			local keyVal = keypoint.Value
+			local success = pcall(function()
+				keyVal = keyVal:ToHex()
+			end)
+			if not success then
+				keyVal = Color3.new(math.clamp(keyVal.R, 0, 1), math.clamp(keyVal.G, 0, 1), math.clamp(keyVal.B, 0, 1)):ToHex()
+			end
+			val[#val+1] = {Time = keypoint.Time, Color = keyVal}
 		end
 	elseif typeStr == "EnumItem" then
 		val = val.Value
@@ -748,7 +755,6 @@ local function saveVal(val, data, key)
 			val = val:ToHex()
 		end)
 		if not success then
-			warn("val:ToHex()", val)
 			val = Color3.new(math.clamp(val.R, 0, 1), math.clamp(val.G, 0, 1), math.clamp(val.B, 0, 1)):ToHex()
 		end
 	elseif typeStr == "BrickColor" then
