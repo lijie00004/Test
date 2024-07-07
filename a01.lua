@@ -744,6 +744,7 @@ local function saveVal(val, data, key)
 				keyVal = keyVal:ToHex()
 			end)
 			if not success then
+				print("ColorSequence ToHex", keyVal)
 				keyVal = Color3.new(math.clamp(keyVal.R, 0, 1), math.clamp(keyVal.G, 0, 1), math.clamp(keyVal.B, 0, 1)):ToHex()
 			end
 			val[#val+1] = {Time = keypoint.Time, Color = keyVal}
