@@ -669,6 +669,12 @@ local InstData = {
 	MaterialVariant = {
 		Properties = {"BaseMaterial","ColorMap","CustomPhysicalProperties","MaterialPattern","MetalnessMap","NormalMap","RoughnessMap","StudsPerTile",},
 	},
+	Dialog = {
+		Properties = {"BehaviorType","ConversationDistance","GoodbyeChoiceActive","GoodbyeDialog","InUse","InitialPrompt","Purpose","Tone","TriggerDistance","TriggerOffset",},
+	},
+	DialogChoice = {
+		Properties = {"GoodbyeChoiceActive","GoodbyeDialog","ResponseDialog","UserDialog"},
+	},
 }
 
 local HttpService = game.HttpService
@@ -742,6 +748,7 @@ local function saveVal(val, data, key)
 			val = val:ToHex()
 		end)
 		if not success then
+			warn("val:ToHex()", val)
 			val = Color3.new(math.clamp(val.R, 0, 1), math.clamp(val.G, 0, 1), math.clamp(val.B, 0, 1)):ToHex()
 		end
 	elseif typeStr == "BrickColor" then
